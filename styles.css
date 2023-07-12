@@ -1,2 +1,36 @@
 
 #map { height: 180px; }
+
+.linke-seite {
+    height: 850px;
+    width: 350px;
+    background-color :#FF6C6C;
+    position: absolute;
+}
+.jellow-box-1 {
+    height: 50px;
+    width: 350px;
+    background-color: #ffff00;
+    margin-top: 100px;
+    text-align: center;
+}
+.jellow-box-2 {
+    height: 50px;
+    width: 350px;
+    background-color: #ffff00;
+    margin-top: 150px;
+    text-align: center;
+}
+.jellow-box-3 {
+    height: 50px;
+    width: 350px;
+    background-color: #ffff00;
+    position: relative;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+}
+a{
+    color: black;
+    font-size: 30px;
+}

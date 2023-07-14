@@ -57,3 +57,13 @@ body {
 .site_content {
   justify-content: row;
 }
+.input-container {
+  background-color: #6ac4d7;
+
+  margin: 10px;
+  height: calc(100vh - 60px);
+  padding: 20px;
+}
+.form-text {
+  margin: 0px;
+}

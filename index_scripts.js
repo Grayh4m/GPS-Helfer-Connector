@@ -16,8 +16,10 @@ function navigateTo(site) {
 }
 
 for (var i = 0; i < marker.length; i++) {
-  L.marker([marker[i][0], marker[i][1]])
-    .addTo(map)
-    .bindPopup(marker[i][2])
-    .openPopup();
+  if (marker[i][0] != null) {
+    L.marker([marker[i][0], marker[i][1]])
+      .addTo(map)
+      .bindPopup(marker[i][2])
+      .openPopup();
+  }
 }

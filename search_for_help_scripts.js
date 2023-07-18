@@ -8,17 +8,32 @@ function navigateTo(site) {
   window.location = site;
 }
 function saveInput() {
-  var input = [
-    document.getElementById("woLatInput").value,
-    document.getElementById("woLongInput").value,
-    document.getElementById("wasInput").value,
-  ];
-  console.log(
-    document.getElementById("woLatInput").value +
-      " " +
-      document.getElementById("woLongInput").value +
-      " " +
-      document.getElementById("wasInput").value
-  );
-  marker.push(input);
+  var address = document.getElementById("woInput").value;
+  var url =
+    "https://nominatim.openstreetmap.org/search?format=json&q=" +
+    encodeURIComponent(address);
+
+  fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      if (data.length > 0) {
+        var location = data[0];
+        console.log("Latitude: " + location.lat);
+        console.log("Longitude: " + location.lon);
+        document.getElementById("woInput").value = location.display_name;
+        var input = [
+          location.lat,
+          location.lon,
+          document.getElementById("wasInput").value,
+        ];
+        marker.push(input);
+      } else {
+        console.log("Geocoding failed");
+      }
+    })
+    .catch(function (error) {
+      console.log("Error: " + error);
+    });
 }

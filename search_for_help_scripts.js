@@ -12,6 +12,7 @@ function saveInput() {
   var url =
     "https://nominatim.openstreetmap.org/search?format=json&q=" +
     encodeURIComponent(address);
+  console.log(url);
 
   fetch(url)
     .then(function (response) {

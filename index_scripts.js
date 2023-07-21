@@ -1,19 +1,27 @@
 var receivedArray = JSON.parse(localStorage.getItem("marker"));
 var marker = [];
+
 if (receivedArray) {
   marker = receivedArray;
   var container = document.getElementById("rechte-seite");
   for (let i = 0; i < marker.length; i++) {
-    const innerArray = marker[i];
-    const paragraph = document.createElement("p");
+    var innerArray = marker[i];
+    var paragraph = document.createElement("p");
+    var karte = document.createElement("div");
+    karte.className = "karte";
+    var karteTitle = document.createElement("h1");
+    karteTitle.textContent = innerArray[2];
+    var kartePlace = document.createElement("h2");
 
-    for (let j = 0; j < innerArray.length; j++) {
-      const textNode = document.createTextNode(innerArray[j]);
-      paragraph.appendChild(textNode);
-      paragraph.appendChild(document.createElement("br")); // Optional line break
-    }
+    convertToAddress(innerArray[0], innerArray[1], kartePlace);
 
-    container.appendChild(paragraph);
+    var karteInfo = document.createElement("p");
+    karteInfo.textContent = innerArray[3];
+
+    karte.appendChild(karteTitle);
+    karte.appendChild(kartePlace);
+    karte.appendChild(karteInfo);
+    container.appendChild(karte);
   }
 }
 var map = L.map("map").setView([49.98419, 8.2791], 13);
@@ -34,5 +42,26 @@ for (var i = 0; i < marker.length; i++) {
       .addTo(map)
       .bindPopup(marker[i][2])
       .openPopup();
+  }
+}
+
+async function convertToAddress(latitude, longitude, kartePlace) {
+  const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.error) {
+      throw new Error(data.error);
+    }
+
+    const address = data.display_name;
+    console.log(address);
+    kartePlace.textContent = address;
+    return address;
+  } catch (error) {
+    console.error("Error:", error.message);
+    return null;
   }
 }

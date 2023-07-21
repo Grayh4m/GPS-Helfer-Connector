@@ -28,7 +28,9 @@ function saveInput() {
           location.lat,
           location.lon,
           document.getElementById("wasInput").value,
+          document.getElementById("wannInput").value,
         ];
+        document.getElementById("wannInput").value;
         marker.push(input);
       } else {
         console.log("Geocoding failed");

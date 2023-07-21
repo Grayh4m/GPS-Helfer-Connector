@@ -14,6 +14,8 @@
   height: 50vh;
   width: 80%;
   float: right;
+  display: flex;
+  flex-wrap: wrap;
 }
 .yellow-box-1 {
   height: 50px;
@@ -60,11 +62,28 @@ body {
 }
 .input-container {
   background-color: #6ac4d7;
-
+  width: 100%;
   margin: 10px;
   height: calc(100vh - 60px);
   padding: 20px;
 }
 .form-text {
   margin: 0px;
+}
+
+.karte {
+  background-color: #add8e6;
+  width: 400px;
+  height: fit-content;
+  padding: 10px;
+  margin: 10px;
+}
+.find-helper {
+  background-color: #90ee90;
+  width: 250px;
+  height: 50px;
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  text-align: center;
 }
